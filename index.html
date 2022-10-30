@@ -2,9 +2,45 @@
 <html>
   <body>
         <!-- <video controls src="magnet:?xt=urn:btih:A3785734DCF302CA0091B36D29A01E1E7A5FD769&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet&dn=%D0%9A%D1%80%D1%8B%D0%BB%D1%8C%D1%8F%2C%20%D0%BD%D0%BE%D0%B3%D0%B8%20%D0%B8%20%D1%85%D0%B2%D0%BE%D1%81%D1%82%D1%8B%20(%D0%98%D0%B3%D0%BE%D1%80%D1%8C%20%D0%9A%D0%BE%D0%B2%D0%B0%D0%BB%D1%91%D0%B2%2C%20%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%20%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9)%20%5B1985%2C%20%D0%A1%D0%A1%D0%A1%D0%A0%2C%20%D0%9C%D1%83%D0%BB%D1%8C%D1%82%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%2C%20DVDRip%5D"></video> -->
-        <video controls src="A3785734DCF302CA0091B36D29A01E1E7A5FD769"></video>
-        <video controls src="A3785734DCF302CA0091B36D29A01E1E7A5FD769" poster="https://via.placeholder.com/150/0000FF/808080" width="100%" data-title="Sintel">
-        </video>
-        <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+        <div id="player" class="webtor" />
+    <script>
+        window.webtor = window.webtor || [];
+        window.webtor.push({
+            id: 'player',
+            magnet: 'magnet:?xt=urn:btih:A3785734DCF302CA0091B36D29A01E1E7A5FD769&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet&dn=%D0%9A%D1%80%D1%8B%D0%BB%D1%8C%D1%8F%2C%20%D0%BD%D0%BE%D0%B3%D0%B8%20%D0%B8%20%D1%85%D0%B2%D0%BE%D1%81%D1%82%D1%8B%20(%D0%98%D0%B3%D0%BE%D1%80%D1%8C%20%D0%9A%D0%BE%D0%B2%D0%B0%D0%BB%D1%91%D0%B2%2C%20%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%20%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9)%20%5B1985%2C%20%D0%A1%D0%A1%D0%A1%D0%A0%2C%20%D0%9C%D1%83%D0%BB%D1%8C%D1%82%D1%84%D0%B8%D0%BB%D1%8C%D0%BC%2C%20DVDRip%5D',
+            on: function(e) {
+                if (e.name == window.webtor.TORRENT_FETCHED) {
+                    console.log('Torrent fetched!', e.data);
+                }
+                if (e.name == window.webtor.TORRENT_ERROR) {
+                    console.log('Torrent error!');
+                }
+            },
+            poster: 'https://via.placeholder.com/150/0000FF/808080',
+            subtitles: [
+                {
+                    srclang: 'en',
+                    label: 'test',
+                    src: 'https://raw.githubusercontent.com/andreyvit/subtitle-tools/master/sample.srt',
+                    default: true,
+                }
+            ],
+            lang: 'en',
+            i18n: {
+                en: {
+                    common: {
+                        "prepare to play": "Preparing Video Stream... Please Wait...",
+                    },
+                    stat: {
+                        "seeding": "Seeding",
+                        "waiting": "Client initialization",
+                        "waiting for peers": "Waiting for peers",
+                        "from": "from",
+                    },
+                },
+            },
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@webtor/embed-sdk-js/dist/index.min.js" charset="utf-8" async></script>
   </body>
 </html>
